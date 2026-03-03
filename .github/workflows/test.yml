@@ -1,0 +1,24 @@
+# https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows
+name: Test Project
+on:
+  push:
+    branches:
+      -'master'
+jobs:
+  test:
+  # need to define env/runner. It's the vm/server the code will run on
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Get code
+      # uses is a keyword that defines the action that will be used
+      # checkout allows for the entire repo to be downloaded to the runner
+        uses: actions/checkout@v3
+        # this is not needed b/c ubuntu latest has node already
+      - name: Install NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install dependencies
+        run: npm install
+      - name: Run tests
+        run: npm test
