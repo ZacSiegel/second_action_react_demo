@@ -8,6 +8,7 @@ jobs:
   test:
   # need to define env/runner. It's the vm/server the code will run on
     runs-on: ubuntu-latest
+    # steps execute a shell script or an action
     steps: 
       - name: Get code
       # uses is a keyword that defines the action that will be used
