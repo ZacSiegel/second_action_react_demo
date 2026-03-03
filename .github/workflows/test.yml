@@ -3,7 +3,7 @@ name: Test Project
 on:
   push:
     branches:
-      -'master'
+      - 'master'
 jobs:
   test:
   # need to define env/runner. It's the vm/server the code will run on
