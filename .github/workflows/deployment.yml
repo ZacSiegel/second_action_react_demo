@@ -1,9 +1,10 @@
 # https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows
-name: Test Project
+name: Deploy Project
 on:
   push:
     branches:
       - 'master'
+# every job has its own runner/vm that is isolated form the other jobs/runners
 jobs:
   test:
   # need to define env/runner. It's the vm/server the code will run on
@@ -23,3 +24,18 @@ jobs:
         run: npm install
       - name: Run tests
         run: npm test
+  deploy: 
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v3
+      - name: Install NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: install dependencies
+        run: npm install
+      - name: Build project
+        run: npm run Build
+      - name: Deploy
+        run: echo "Deploying..."
